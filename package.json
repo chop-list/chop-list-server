@@ -1,0 +1,25 @@
+{
+  "name": "chop-list-server",
+  "version": "1.0.0",
+  "description": "Chop List application server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chop-list/chop-list-server.git"
+  },
+  "keywords": [
+    "chop",
+    "list",
+    "koajs",
+    "server"
+  ],
+  "author": "migalons74@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chop-list/chop-list-server/issues"
+  },
+  "homepage": "https://github.com/chop-list/chop-list-server#readme"
+}
