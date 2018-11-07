@@ -21,5 +21,16 @@
   "bugs": {
     "url": "https://github.com/chop-list/chop-list-server/issues"
   },
-  "homepage": "https://github.com/chop-list/chop-list-server#readme"
+  "homepage": "https://github.com/chop-list/chop-list-server#readme",
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-security": "^1.4.0"
+  },
+  "dependencies": {
+    "graphql": "^14.0.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
 }

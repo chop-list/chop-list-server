@@ -1,0 +1,20 @@
+{
+  "parserOptions": {
+    "sourceType": "module"
+},
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "no-unused-vars": 2,
+    "no-undef": 2
+  },
+  "plugins": [
+    "security"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "plugin:security/recommended"
+  ]
+}
