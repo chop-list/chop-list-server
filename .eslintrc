@@ -16,5 +16,8 @@
     "eslint:recommended",
     "plugin:node/recommended",
     "plugin:security/recommended"
-  ]
+  ],
+  "globals": {
+    "log": true
+  }
 }
