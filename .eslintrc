@@ -13,6 +13,7 @@
     "security"
   ],
   "extends": [
+    "standard",
     "eslint:recommended",
     "plugin:node/recommended",
     "plugin:security/recommended"

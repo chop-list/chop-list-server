@@ -1,6 +1,6 @@
 {
   "name": "chop-list-server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Chop List application server",
   "main": "index.js",
   "scripts": {
@@ -25,11 +25,19 @@
   "homepage": "https://github.com/chop-list/chop-list-server#readme",
   "devDependencies": {
     "eslint": "^5.8.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-security": "^1.4.0"
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.0"
   },
   "dependencies": {
+    "commander": "^2.19.0",
     "graphql": "^14.0.2",
+    "koa": "^2.6.1",
+    "koa-graphql": "^0.8.0",
+    "koa-router": "^7.4.0",
     "winston": "^3.1.0"
   },
   "engines": {
