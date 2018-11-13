@@ -27,4 +27,29 @@ CREATE TABLE `credentials_table` (
   FOREIGN KEY (`userid`)
   REFERENCES `chop_list_db`.`users_table` (`id`)
   ON DELETE RESTRICT
-  ON UPDATE RESTRICT);
+  ON UPDATE RESTRICT
+);
+
+CREATE TABLE `lists_table` (
+  `id` INT UNSIGNED AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE);
+  
+CREATE TABLE `lists2users_table` (
+  `role` VARCHAR(45),
+  `user_id` INT UNSIGNED NOT NULL,
+  `list_id` INT UNSIGNED NOT NULL,
+  INDEX `user_idx` (`user_id` ASC) VISIBLE,
+  INDEX `list_id_idx` (`list_id` ASC) VISIBLE,
+  CONSTRAINT `user_id`
+	  FOREIGN KEY (`user_id`)
+	  REFERENCES `chop_list_db`.`users_table` (`id`)
+	  ON DELETE RESTRICT
+	  ON UPDATE RESTRICT,
+  CONSTRAINT `list_id`
+	  FOREIGN KEY (`list_id`)
+	  REFERENCES `chop_list_db`.`lists_table` (`id`)
+	  ON DELETE RESTRICT
+	  ON UPDATE RESTRICT
+)
