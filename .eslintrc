@@ -19,6 +19,7 @@
     "plugin:security/recommended"
   ],
   "globals": {
-    "log": true
+    "log": true,
+    "require": true
   }
 }
