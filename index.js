@@ -5,13 +5,13 @@ const program = require('commander');
 require('./lib/util/log');
 
 program
-    .version(require("./package.json").version)
-    .option("-p --port [port]", "Port to use", 8000)
-    .option("-v --verbose");
+  .version(require("./package.json").version)
+  .option("-p --port [port]", "Port to use", 8000)
+  .option("-v --verbose");
 
-if(program.verbose) {
-    log.level = "debug";
+if (program.verbose) {
+  log.level = "debug";
 }
 
-server({port: program.port});
+server({ port: program.port });
 
