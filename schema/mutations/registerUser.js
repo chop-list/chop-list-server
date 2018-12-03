@@ -10,7 +10,12 @@ const chopListDb = require("../../database/chopListDb");
 const UserIdType = new GraphQLObjectType({
   name: 'UserId',
   fields: {
-    id: {type: new GraphQLNonNull(GraphQLInt)}
+    id: {type: new GraphQLNonNull(GraphQLInt)},
+    firstName: {type: new GraphQLNonNull(GraphQLString)},
+    lastName: {type: new GraphQLNonNull(GraphQLString)},
+    email: {type: new GraphQLNonNull(GraphQLString)},
+    username: {type: new GraphQLNonNull(GraphQLString)},
+    status: {type: new GraphQLNonNull(GraphQLString)}
   }
 });
 const RegisterUserInputType = new GraphQLInputObjectType({
@@ -18,7 +23,9 @@ const RegisterUserInputType = new GraphQLInputObjectType({
   fields: {
     firstName: {type: new GraphQLNonNull(GraphQLString)},
     lastName: {type: new GraphQLNonNull(GraphQLString)},
-    email: {type: new GraphQLNonNull(GraphQLString)}
+    email: {type: new GraphQLNonNull(GraphQLString)},
+    username: {type: new GraphQLNonNull(GraphQLString)},
+    password: {type: new GraphQLNonNull(GraphQLString)}
   }
 });
 

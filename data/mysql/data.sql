@@ -12,15 +12,15 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 /* JOHN DOE */
 
-INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`) VALUES ('John', 'Doe', 'jdoe@hotmail.com');
+INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`, `status`) VALUES ('John', 'Doe', 'jdoe@hotmail.com', 'active');
 
 INSERT INTO `chop_list_db`.`credentials_table` (`primary`, `type`, `username`, `password`, `user_id`) VALUES (TRUE, 'USER/PASSWORD', 'jdoe', '12345678', '1');
 
 INSERT INTO `chop_list_db`.`lists_table` (`name`) VALUES ('Mercadona');
 
 INSERT INTO `chop_list_db`.`lists2users_table` (`role`, `user_id`, `list_id`) VALUES ('owner', 1, 1);
-    
-INSERT INTO `chop_list_db`.`categories_table` (`name`, `list_id`) VALUES 
+
+INSERT INTO `chop_list_db`.`categories_table` (`name`, `list_id`) VALUES
 	('Carniceria', '1'),
     ('Polleria', '1'),
     ('Limpieza', '1'),
@@ -29,7 +29,7 @@ INSERT INTO `chop_list_db`.`categories_table` (`name`, `list_id`) VALUES
     ('Higiene personal', '1'),
     ('Bebidas', '1');
 
-INSERT INTO `chop_list_db`.`items_table` (`name`, `category_id`) VALUES 
+INSERT INTO `chop_list_db`.`items_table` (`name`, `category_id`) VALUES
 	('Lomo adobado', '1'),
     ('Filetes de pechuga de pollo', '2'),
     ('Fregasuelos', '3'),
@@ -42,19 +42,19 @@ INSERT INTO `chop_list_db`.`items_table` (`name`, `category_id`) VALUES
 	('Puerros', '5'),
     ('Tomates', '5'),
     ('Champú', '6');
-    
-    
-INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`) VALUES ('Jane', 'Fonda', 'jfonda@hotmail.com');
+
+
+INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`, `status`) VALUES ('Jane', 'Fonda', 'jfonda@hotmail.com', 'active');
 
 INSERT INTO `chop_list_db`.`lists2users_table` (`role`, `user_id`, `list_id`) VALUES ('invitee', 2, 1);
 
 INSERT INTO `chop_list_db`.`credentials_table` (`primary`, `type`, `username`, `password`, `user_id`) VALUES (TRUE, 'USER/PASSWORD', 'jfonda', '12345678', '2');
 
-INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`) VALUES ('Alan', 'Parsons', 'aparsons@hotmail.com');
+INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`, `status`) VALUES ('Alan', 'Parsons', 'aparsons@hotmail.com', 'active');
 
 INSERT INTO `chop_list_db`.`credentials_table` (`primary`, `type`, `username`, `password`, `user_id`) VALUES (TRUE, 'USER/PASSWORD', 'aparsons', '12345678', '3');
 
-INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`) VALUES ('Michael', 'Moore', 'mmoore@hotmail.com');
+INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`, `status`) VALUES ('Michael', 'Moore', 'mmoore@hotmail.com','registered');
 
 INSERT INTO `chop_list_db`.`credentials_table` (`primary`, `type`, `username`, `password`, `user_id`) VALUES (TRUE, 'USER/PASSWORD', 'mmoore', '12345678', '4');
 

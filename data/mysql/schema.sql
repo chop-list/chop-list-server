@@ -9,6 +9,7 @@ CREATE TABLE users_table (
   first_name VARCHAR(45) NOT NULL,
   last_name VARCHAR(45) NULL,
   email VARCHAR(128) NULL,
+  `status` VARCHAR(12) NULL,
   last_connection DATETIME NULL,
   creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
@@ -37,7 +38,7 @@ CREATE TABLE `lists_table` (
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE);
-  
+
 CREATE TABLE `lists2users_table` (
   `role` VARCHAR(45),
   `user_id` INT UNSIGNED NOT NULL,
