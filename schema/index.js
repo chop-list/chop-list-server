@@ -1,7 +1,8 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLNonNull, GraphQLInt } = require('graphql');
 const UserType = require("./types/user");
 const chopListDb = require("../database/chopListDb");
-const RegisterUserMutation = require("./mutations/registerUser");
+const SignUpMutation = require("./mutations/signUp");
+// const LoginMutation = require("./mutations/login");
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
@@ -22,7 +23,8 @@ const RootQueryType = new GraphQLObjectType({
 const RootMutationType = new GraphQLObjectType( {
   name: "RootMutation",
   fields: () => ({
-    RegisterUser: RegisterUserMutation
+    // Login: LoginMutation,
+    signup: SignUpMutation
   })
 });
 

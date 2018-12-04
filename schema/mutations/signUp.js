@@ -18,8 +18,8 @@ const UserIdType = new GraphQLObjectType({
     status: {type: new GraphQLNonNull(GraphQLString)}
   }
 });
-const RegisterUserInputType = new GraphQLInputObjectType({
-  name: 'RegisterUserInput',
+const SignUpInputType = new GraphQLInputObjectType({
+  name: 'SignUpInput',
   fields: {
     firstName: {type: new GraphQLNonNull(GraphQLString)},
     lastName: {type: new GraphQLNonNull(GraphQLString)},
@@ -32,9 +32,9 @@ const RegisterUserInputType = new GraphQLInputObjectType({
 module.exports = {
   type: UserIdType,
   args: {
-    input: { type: new GraphQLNonNull(RegisterUserInputType) }
+    input: { type: new GraphQLNonNull(SignUpInputType) }
   },
   resolve(obj, {input}, {msPool}) {
-    return chopListDb(msPool).registerUser(input);
+    return chopListDb(msPool).signUp(input);
   }
 }

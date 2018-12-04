@@ -8,7 +8,7 @@ module.exports = msPool => {
           return humps.camelizeKeys(rows[0])
         });
     },
-    registerUser(user) {
+    signUp(user) {
       let sqlUsersTable = 'INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`, `status`) VALUES (?, ?, ?, ?)'
       let sqlCredentiasTable = 'INSERT INTO `chop_list_db`.`credentials_table` (`primary`, `type`, `username`, `password`, `user_id`) values (true, "USER/PASSWORD", ?, ?, ?)';
       Object.assign(user, {status: "registered"});
