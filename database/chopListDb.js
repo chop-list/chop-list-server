@@ -38,7 +38,7 @@ module.exports = msPool => {
       return msPool.query(sql, [credentials.username, credentials.password])
         .then((result ) => {
           if(result && result.length == 1 && result[0].status == ACTIVE_STATUS) {
-            return "Success!"
+            return result[0].id;
           } else {
             return ("Forbidden!")
           }

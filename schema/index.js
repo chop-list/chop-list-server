@@ -1,4 +1,4 @@
-const { GraphQLSchema, GraphQLObjectType, GraphQLNonNull, GraphQLInt } = require('graphql');
+const { GraphQLSchema, GraphQLObjectType } = require('graphql');
 const UserType = require("./types/user");
 const chopListDb = require("../database/chopListDb");
 const SignUpMutation = require("./mutations/signUp");
@@ -10,10 +10,11 @@ const RootQueryType = new GraphQLObjectType({
     user: {
       type: UserType,
       description: "User data identified by a key",
-      args: {
-        id: { type: new GraphQLNonNull(GraphQLInt) }
-      },
-      resolve(obj, args, { msPool }) {
+      args: {},
+      resolve(obj, args, { user, msPool }) {
+        if(!user) {
+          throw new Error("You are not authenticated!")
+        }
         return chopListDb(msPool).getUser(args.id);
       }
     }

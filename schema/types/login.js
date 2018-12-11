@@ -6,6 +6,6 @@ const {
 module.exports = new GraphQLObjectType({
   name: 'LoginType',
   fields:{
-      status: {type: GraphQLString}
+      auth: {type: GraphQLString}
   }
 })
