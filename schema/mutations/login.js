@@ -12,6 +12,9 @@ module.exports = {
     input: { type: new GraphQLNonNull(LoginInputType) }
   },
   resolve(obj, {input}, {msPool}) {
-    return chopListDb(msPool).login(input).then(id => ({auth: jwt.sign({user: id}, secret)}));
+    return chopListDb(msPool).login(input).then(id => {
+      let auth = jwt.sign({user: id}, secret, {expiresIn: '1y'});
+      return {auth: auth}
+    })
   }
 }
