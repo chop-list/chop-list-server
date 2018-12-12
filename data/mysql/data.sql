@@ -6,7 +6,10 @@ TRUNCATE `chop_list_db`.`lists2users_table`;
 
 TRUNCATE `chop_list_db`.`lists_table`;
 
-TRUNCATE `chop_list_db`.`users_table`;
+TRUNCATE `chop_list_db`.`categories_table`;
+
+TRUNCATE `chop_list_db`.`items_table`;
+
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -18,7 +21,11 @@ INSERT INTO `chop_list_db`.`credentials_table` (`primary`, `type`, `username`, `
 
 INSERT INTO `chop_list_db`.`lists_table` (`name`) VALUES ('Mercadona');
 
+INSERT INTO `chop_list_db`.`lists_table` (`name`) VALUES ('Vacaciones');
+
 INSERT INTO `chop_list_db`.`lists2users_table` (`role`, `user_id`, `list_id`) VALUES ('owner', 1, 1);
+
+INSERT INTO `chop_list_db`.`lists2users_table` (`role`, `user_id`, `list_id`) VALUES ('owner', 1, 2);
 
 INSERT INTO `chop_list_db`.`categories_table` (`name`, `list_id`) VALUES
 	('Carniceria', '1'),

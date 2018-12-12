@@ -1,11 +1,10 @@
 const {gql} = require("apollo-server-koa");
 
 const typeDef = gql`
-  type List {
+  type Category{
     id: Int!
     name: String!
-    role: String!
-    categories: [Category]
+    items: [Item]
   }
 `
 

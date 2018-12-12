@@ -1,7 +1,8 @@
 module.exports = {
   Query: {
-    user: require("./user.js"),
-    lists: require("./lists")
+    getUser: require("./getUser.js"),
+    getLists: require("./getLists"),
+    getList: require("./getList")
   },
   Mutation: {
     login: require("./login")
