@@ -27,7 +27,7 @@ module.exports = msPool => {
           status: user.status
         }))
     },
-    login(credentials) {
+    login(username, password) {
       let sql = 'SELECT users_table.id, users_table.status ' +
                 'FROM `chop_list_db`.`users_table`, `chop_list_db`.`credentials_table` ' +
                 'WHERE `chop_list_db`.`users_table`.id = `chop_list_db`.`credentials_table`.user_id ' +
@@ -35,12 +35,12 @@ module.exports = msPool => {
                 'AND `credentials_table`.`type` = "USER/PASSWORD" ' +
                 'AND `credentials_table`.`username` = ? ' +
                 'AND `credentials_table`.`password` = ? ';
-      return msPool.query(sql, [credentials.username, credentials.password])
+      return msPool.query(sql, [username, password])
         .then((result ) => {
           if(result && result.length == 1 && result[0].status == ACTIVE_STATUS) {
             return result[0].id;
           } else {
-            return ("Forbidden!")
+            throw new Error("Forbidden!")
           }
         })
     }
