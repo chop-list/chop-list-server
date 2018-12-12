@@ -1,4 +1,5 @@
 const humps = require("humps");
+const ACTIVE_STATUS = "active";
 
 module.exports = msPool => {
   return {
@@ -8,7 +9,7 @@ module.exports = msPool => {
           return humps.camelizeKeys(rows[0])
         });
     },
-    registerUser(user) {
+    signUp(user) {
       let sqlUsersTable = 'INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`, `status`) VALUES (?, ?, ?, ?)'
       let sqlCredentiasTable = 'INSERT INTO `chop_list_db`.`credentials_table` (`primary`, `type`, `username`, `password`, `user_id`) values (true, "USER/PASSWORD", ?, ?, ?)';
       Object.assign(user, {status: "registered"});
@@ -25,6 +26,23 @@ module.exports = msPool => {
           email: user.email,
           status: user.status
         }))
+    },
+    login(credentials) {
+      let sql = 'SELECT users_table.id, users_table.status ' +
+                'FROM `chop_list_db`.`users_table`, `chop_list_db`.`credentials_table` ' +
+                'WHERE `chop_list_db`.`users_table`.id = `chop_list_db`.`credentials_table`.user_id ' +
+                'AND `credentials_table`.`primary` = true ' +
+                'AND `credentials_table`.`type` = "USER/PASSWORD" ' +
+                'AND `credentials_table`.`username` = ? ' +
+                'AND `credentials_table`.`password` = ? ';
+      return msPool.query(sql, [credentials.username, credentials.password])
+        .then((result ) => {
+          if(result && result.length == 1 && result[0].status == ACTIVE_STATUS) {
+            return result[0].id;
+          } else {
+            return ("Forbidden!")
+          }
+        })
     }
   }
 }

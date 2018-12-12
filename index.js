@@ -8,6 +8,7 @@ program
   .version(require("./package.json").version)
   .option("-p --port [port]", "Port to use", 8000)
   .option("--host [hostname]", "Server hostname", "localhost")
+  .option("-s --secret [secret]", "Secret passphrase for encoding tokens")
   .option("-v --verbose");
 
 if (program.verbose) {

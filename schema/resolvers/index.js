@@ -1,6 +1,8 @@
-const user = require("./user.js");
 module.exports = {
   Query: {
-    user: user
+    user: require("./user.js"),
+  },
+  Mutation: {
+    login: require("./login")
   }
 }
