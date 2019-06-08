@@ -1,1 +1,1 @@
-ALTER USER root IDENTIFIED WITH mysql_native_password BY '12341234';
+ALTER USER root IDENTIFIED WITH mysql_native_password BY 'changeme';
