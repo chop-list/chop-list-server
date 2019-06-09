@@ -10,7 +10,7 @@ module.exports = msPool => {
         });
     },
     getLists(userId) {
-      const sql = "SELECT lists_table.name, lists2users_table.role " +
+      const sql = "SELECT lists_table.id, lists_table.name, lists2users_table.role " +
         "FROM `chop_list_db`.`lists_table`, `chop_list_db`.`users_table`, `chop_list_db`.`lists2users_table` " +
         "WHERE lists2users_table.user_id = users_table.id " +
         "AND lists2users_table.list_id = lists_table.id " +
