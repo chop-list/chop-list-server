@@ -9,60 +9,56 @@ module.exports = msPool => {
           return humps.camelizeKeys(rows[0])
         });
     },
-    getLists(userId) {
-      const sql = "SELECT lists_table.id, lists_table.name, lists2users_table.role " +
+
+    getLists(userId, listIds = []) {
+      let sql = "SELECT lists_table.id 'id', lists_table.name 'name', lists2users_table.role 'role' " +
         "FROM `chop_list_db`.`lists_table`, `chop_list_db`.`users_table`, `chop_list_db`.`lists2users_table` " +
         "WHERE lists2users_table.user_id = users_table.id " +
         "AND lists2users_table.list_id = lists_table.id " +
         "AND users_table.id = ? "
-      return msPool.query(sql, userId)
+
+      if(listIds && listIds.length > 0) {
+        sql += "AND lists_table.id in (?) "
+      }
+
+      return msPool.query(sql, [userId, listIds])
         .then((rows) => {
-          return humps.camelizeKeys(rows)
+          return this.getListCategories(userId, rows.map(row => row.id))
+            .then(categories => {
+              rows.map(row => row.categories = categories.filter(category => category.listId === row.id))
+              return humps.camelizeKeys(rows)
+            })
         });
     },
-    getList(userId, listId) {
-      const listSql = "SELECT lists_table.name, lists2users_table.role, lists_table.id " +
-        "FROM `chop_list_db`.`lists_table`, `chop_list_db`.`users_table`, `chop_list_db`.`lists2users_table` " +
-        "WHERE lists2users_table.user_id = users_table.id " +
-        "AND lists2users_table.list_id = lists_table.id " +
-        "AND users_table.id = ? " +
-        "AND lists_table.id = ?";
-      const categoriesSql = "SELECT categories_table.name, categories_table.id " +
-        "FROM `chop_list_db`.`lists_table`, `chop_list_db`.`categories_table` " +
-        "WHERE categories_table.list_id = lists_table.id " +
-        "AND lists_table.id = ? ";
-      const itemsSql = "SELECT categories_table.id categoryId, items_table.id, items_table.name, items_table.checked " +
-        "FROM `chop_list_db`.`items_table`, `chop_list_db`.`categories_table` " +
-        "WHERE categories_table.id = items_table.category_id " +
-        "AND categories_table.id in (?) "
 
-      let list;
-      return msPool.query(listSql, [userId, listId])
+    getListCategories(userId, listIds) {
+      const sql = "SELECT lists_table.id 'list_id', categories_table.name 'name', categories_table.id 'id' " +
+      "FROM `chop_list_db`.`lists_table`, `chop_list_db`.`categories_table` " +
+      "WHERE categories_table.list_id = lists_table.id " +
+      "AND lists_table.id in (?) ";
+      return msPool.query(sql, [userId, listIds])
         .then(rows => {
-          if (rows.length > 0) {
-            list = humps.camelizeKeys(rows[0]);
-            return msPool.query(categoriesSql, [list.id])
-              .then(rows => {
-                list.categories = humps.camelizeKeys(rows);
-                if (list.categories.length > 0) {
-                  let categoryIds = list.categories.map(cat => cat.id);
-                  return msPool.query(itemsSql, [categoryIds])
-                    .then(rows => {
-                      list.categories.forEach(category => {
-                        category.items = rows.filter(row => row.categoryId === category.id)
-                          .map(row => ({ id: row.id, name: row.name, checked: row.checked }));
-                      });
-                      return list;
-                    })
-                } else {
-                  return list;
-                }
-              })
-          } else {
-            throw new Error("List not found!")
-          }
+          rows = humps.camelizeKeys(rows)
+          return this.getCategoryItems(rows.map(row => row.id))
+            .then(items => {
+              rows.map(row => row.items = items.filter(item => item.categoryId === row.id))
+              return rows
+            })
         })
     },
+
+    getCategoryItems(categoryIds) {
+      const sql = "SELECT categories_table.id categoryId, items_table.id, items_table.name, items_table.checked " +
+      "FROM `chop_list_db`.`items_table`, `chop_list_db`.`categories_table` " +
+      "WHERE categories_table.id = items_table.category_id " +
+      "AND categories_table.id in (?) "
+      return msPool.query(sql, [categoryIds])
+      .then(rows => {
+        rows = humps.camelizeKeys(rows)
+        return rows
+      })
+    },
+
     signUp(user) {
       let sqlUsersTable = 'INSERT INTO `chop_list_db`.`users_table` (`first_name`, `last_name`, `email`, `status`) VALUES (?, ?, ?, ?)'
       let sqlCredentiasTable = 'INSERT INTO `chop_list_db`.`credentials_table` (`primary`, `type`, `username`, `password`, `user_id`) values (true, "USER/PASSWORD", ?, ?, ?)';

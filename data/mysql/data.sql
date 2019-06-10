@@ -38,6 +38,10 @@ INSERT INTO `chop_list_db`.`categories_table` (`name`, `list_id`) VALUES
 
 INSERT INTO `chop_list_db`.`items_table` (`name`, `category_id`) VALUES
 	('Lomo adobado', '1'),
+	('Chuletas de cordero', '1'),
+	('Entrecot', '1'),
+	('Filete ternera', '1'),
+	('Redondo de ternera', '1'),
     ('Filetes de pechuga de pollo', '2'),
     ('Fregasuelos', '3'),
     ('Fregona', '3'),
