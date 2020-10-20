@@ -34,7 +34,7 @@
     "eslint-plugin-standard": "^4.0.0"
   },
   "dependencies": {
-    "apollo-server-koa": "^2.2.6",
+    "apollo-server-koa": "^2.14.2",
     "commander": "^2.19.0",
     "graphql": "^14.0.2",
     "humps": "^2.0.1",
